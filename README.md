@@ -1,15 +1,15 @@
 # Mobile Application Develeopment Final Project
 # Cartcompare
 
-## Project Overview
+# (Please reach out to me if u need any help)
 This project is a starter template for our mobile app with a basic layout. It includes **four different fragments** that each of us will develop individually. Each fragment represents a section of the app, allowing us to work independently and then bring it all together.
 
 ### Fragments in the Project
 - **Fragment 1:** Home
 - **Fragment 2:** Add
--    #### Sean (Indivisual Cart Comparision) and Ines (Add or Drop)  
+    ### Sean (Indivisual Cart Comparision) and Ines (Add or Drop)  
 - **Fragment 3:** Cart
--    #### Vesim and Moha ( Total Cart Price Comparision)
+    ### Vesim and Moha ( Total Cart Price Comparision)
 - **Fragment 4:** Profile
 
 
