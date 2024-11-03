@@ -1,8 +1,5 @@
-Here’s a more detailed README to guide your group through the setup and work on the project. It includes more specific instructions to help beginners feel comfortable with Git and Android Studio.
-
----
-
-# Mobile Development Assignment - Project Layout Setup
+# Mobile Application Develeopment Final Project
+# Cartcompare
 
 ## Project Overview
 This project is a starter template for our mobile app with a basic layout. It includes **four different fragments** that each of us will develop individually. Each fragment represents a section of the app, allowing us to work independently and then bring it all together.
@@ -10,12 +7,14 @@ This project is a starter template for our mobile app with a basic layout. It in
 ### Fragments in the Project
 - **Fragment 1:** Home
 - **Fragment 2:** Add
+-    #### Sean (Indivisual Cart Comparision) and Ines (Add or Drop)  
 - **Fragment 3:** Cart
+-    #### Vesim and Moha ( Total Cart Price Comparision)
 - **Fragment 4:** Profile
 
-Each group member will take responsibility for one fragment, which allows us to work on our sections without affecting each other's code.
 
----
+
+
 
 ## Getting Started with the Project
 
