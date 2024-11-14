@@ -1,5 +1,6 @@
 package com.example.realestate.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,16 +31,42 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState) //mandatory
 
-        // Attaching a listener to a TextView
-        binding.fruitsTv.setOnClickListener {
-            showCategoryFragment("Fruits")
-        }
-
         //replaces itemsSectionFl with fruits fragment by default.
         if (savedInstanceState == null) {
             childFragmentManager.beginTransaction()
                 .replace(binding.itemsSectionFl.id, fruitsFragment)
                 .commit()
+        }
+
+        //setting up colors for selected catogeries
+        val textViewList = listOf(
+            binding.fruitsTv,
+            binding.veggiesTv,
+            binding.meatTv,
+            binding.fishTv,
+            binding.seafoodTv,
+            binding.juiceTv,
+            binding.eggsMilkTv
+        )
+
+        // setting up click listeners for each category
+        textViewList.forEach { textView ->
+            textView.setOnClickListener {
+                // Set all TextViews to the original color
+                textViewList.forEach { it.setTextColor(Color.parseColor("#34DC1E"))}
+
+                // Set the clicked TextView's color to the selected color
+                textView.setTextColor(Color.parseColor("#007AFF"))
+
+                //show the selected category
+                when(it.id){
+                        binding.fruitsTv.id -> showCategoryFragment("Fruits")
+                        //binding.veggiesTv.id -> showCategoryFragment("Veggies")
+                        //binding.meatTv.id -> showCategoryFragment("Meat")
+                        //binding.fishTv.id -> showCategoryFragment("Fish")
+                }
+
+            }
         }
     }
 

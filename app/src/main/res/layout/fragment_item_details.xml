@@ -22,7 +22,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -78,14 +79,16 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
+                    android:fontFamily="@font/alexandria_semibold"
                     android:text="Apples"
                     android:textAlignment="textStart"
                     android:textColor="#1D1D1D"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
                 <LinearLayout
+                    android:id="@+id/priceDetails"
                     android:layout_width="327dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="30dp"
@@ -100,6 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
+                        android:fontFamily="@font/alexandria"
                         android:text="RM4.30"
                         android:textAlignment="textStart"
                         android:textColor="#34DC1E"
@@ -124,6 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|center_vertical"
+                        android:fontFamily="@font/alexandria_semibold"
                         android:text="RM5.20"
                         android:textAlignment="textStart"
                         android:textColor="#FF0004"
@@ -138,6 +143,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/alexandria"
                         android:text="/ 1kg"
                         android:textAlignment="textStart"
                         android:textColor="#787878"
@@ -147,7 +153,8 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="211dp"
+                    android:id="@+id/cart_filter_buttons"
+                    android:layout_width="match_parent"
                     android:layout_height="37dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
@@ -180,14 +187,35 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0"
                         android:src="@drawable/plus_icon_blue" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0">
+
+                        <ImageView
+                            android:id="@+id/sort"
+                            android:layout_width="28dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_weight="0"
+                            android:src="@drawable/sort_increase"
+                            android:tag="increase"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
 
                 <androidx.gridlayout.widget.GridLayout
-                    android:id="@+id/storesGrid"
+                    android:id="@+id/cardLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="25dp"
                     android:foregroundGravity="center_horizontal"
                     app:columnCount="1">
 
@@ -235,12 +263,11 @@
                                     android:layout_width="140dp"
                                     android:layout_height="43dp"
                                     android:layout_gravity="start|top|center_vertical"
-                                    android:fontFamily="@font/alexandria_semibold"
+                                    android:fontFamily="@font/alexandria_bold"
                                     android:text="JAYA GROCER"
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
                                     android:textSize="15sp"
-                                    android:textStyle="bold"
                                     android:visibility="visible"
                                     tools:layout_marginLeft="5dp" />
 
@@ -305,7 +332,7 @@
                                     android:layout_width="140dp"
                                     android:layout_height="43dp"
                                     android:layout_gravity="start|top|center_vertical"
-                                    android:fontFamily="@font/alexandria_semibold"
+                                    android:fontFamily="@font/alexandria_bold"
                                     android:text="LOTUS'S"
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
@@ -375,7 +402,7 @@
                                     android:layout_width="140dp"
                                     android:layout_height="43dp"
                                     android:layout_gravity="start|top|center_vertical"
-                                    android:fontFamily="@font/alexandria_semibold"
+                                    android:fontFamily="@font/alexandria_bold"
                                     android:text="B.I.G"
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
@@ -445,7 +472,7 @@
                                     android:layout_width="140dp"
                                     android:layout_height="43dp"
                                     android:layout_gravity="start|top|center_vertical"
-                                    android:fontFamily="@font/alexandria_semibold"
+                                    android:fontFamily="@font/alexandria_bold"
                                     android:text="AEON"
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
@@ -514,7 +541,7 @@
                                     android:layout_width="140dp"
                                     android:layout_height="43dp"
                                     android:layout_gravity="start|top|center_vertical"
-                                    android:fontFamily="@font/alexandria_semibold"
+                                    android:fontFamily="@font/alexandria_bold"
                                     android:text="VILLAGE GROCER"
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
