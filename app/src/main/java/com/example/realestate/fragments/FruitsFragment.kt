@@ -28,55 +28,35 @@ class FruitsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //DIRECTLY CLICKING ADD
-        binding.addApple.setOnClickListener{
-            //call function to increase item number in cart
-            Toast.makeText(requireContext(), "1kg of Apple added to cart", Toast.LENGTH_SHORT).show()
-        }
-        binding.addMangoes.setOnClickListener{
-            //call function to increase item number in cart
-            Toast.makeText(requireContext(), "1kg of Mangoes added to cart", Toast.LENGTH_SHORT).show()
-        }
-        binding.addWatermelon.setOnClickListener{
-            //call function to increase item number in cart
-            Toast.makeText(requireContext(), "Watermelon added to cart", Toast.LENGTH_SHORT).show()
-        }
-        binding.addStrawberry.setOnClickListener{
-            //call function to increase item number in cart
-            Toast.makeText(requireContext(), "Strawberries added to cart", Toast.LENGTH_SHORT).show()
-        }
-        binding.addBananas.setOnClickListener{
-            //call function to increase item number in cart
-            Toast.makeText(requireContext(), "Bananas added to cart", Toast.LENGTH_SHORT).show()
+        //Click "+" Button
+        val addFruits = mapOf(
+            binding.addApple to "Apples",
+            binding.addMango to "Mangoes",
+            binding.addWatermelon to "Watermelon",
+            binding.addStrawberry to "Strawberry",
+            binding.addBanana to "Bananas"
+        )
+        addFruits.forEach { (button, fruitName) ->
+            button.setOnClickListener{
+                Toast.makeText(requireContext(), "${fruitName} added to cart", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        //CLICKING THE CARD
-        binding.appleCard.setOnClickListener{
-            (activity as? FragmentSwitch)?.showItemDetailFragment("Apple") //transaction & calling of showItemDetails("Apple") occurs
-//            val activity = activity
-//            if (activity is FragmentSwitch) {
-//                Toast.makeText(requireContext(), "navigating to apple details", Toast.LENGTH_SHORT).show()
-//                activity.showItemDetailFragment("Apple")
-//            } else {
-//                Toast.makeText(requireContext(), "Activity does not implement FragmentSwitch", Toast.LENGTH_SHORT).show()
-//            }
+        //Click Card
+        val fruitCards = mapOf(
+            binding.appleCard to "Apple",
+            binding.mangoCard to "Mangoes",
+            binding.watermelonCard to "Watermelon",
+            binding.strawberryCard to "Strawberry",
+            binding.bananaCard to "Bananas"
+        )
+        fruitCards.forEach { (card, fruitName) ->
+            card.setOnClickListener {
+                (activity as? FragmentSwitch)?.showItemDetailFragment(fruitName)
+            }
         }
     }
 
-//
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        try {
-//            fragmentSwitch = context as FragmentSwitch
-//        } catch (castException: ClassCastException) {
-//            throw RuntimeException("$context must implement FragmentSwitch")
-//        }
-//    }
-//
-//    override fun onDetach() {
-//        super.onDetach()
-//        fragmentSwitch = null
-//    }
 
 }
