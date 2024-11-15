@@ -12,7 +12,7 @@ _Here's what I already did_
 - Fruits Fragment is a sub fragment embedded inside Add Fragment. 
 - In Fruits Fragment, if "+" button is clicked, notificiation "apples added to cart" is shown
 - if the card of Apples/Mangoes/etc is selected, app navigates to Item Details Fragment
-- user can change categories: fruits/veggies/meat etc.. but **I've only completed Fruit category**
+- **I've only completed Fruit category**
   
 ### **2. Item Details:** 
 
