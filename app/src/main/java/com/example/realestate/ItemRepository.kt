@@ -389,6 +389,32 @@ object ItemRepository {
         ),
         Item(
             category = "Eggs & Dairy",
+            name = "Henry Jones (Organic Milk)",
+            imageResId = R.drawable.organic_milk,
+            unit = "1L",
+            priceLow = "RM10.00",
+            priceHigh = "RM15.00",
+            jayaPrice = "RM12.00",
+            vgPrice = "RM13.00",
+            lotusPrice = "RM10.00",
+            bigPrice = "RM14.00",
+            aeonPrice = "RM15.00"
+        ),
+        Item(
+            category = "Eggs & Dairy",
+            name = "Farm Fresh (Fresh Milk)",
+            imageResId = R.drawable.fresh_milk,
+            unit = "1L",
+            priceLow = "RM6.00",
+            priceHigh = "RM8.00",
+            jayaPrice = "RM6.50",
+            vgPrice = "RM7.00",
+            lotusPrice = "RM6.00",
+            bigPrice = "RM7.50",
+            aeonPrice = "RM8.00"
+        ),
+        Item(
+            category = "Eggs & Dairy",
             name = "Chicken Eggs (Grade A)",
             imageResId = R.drawable.eggs,
             unit = "10's",
@@ -399,19 +425,6 @@ object ItemRepository {
             lotusPrice = "RM6.00",
             bigPrice = "RM7.80",
             aeonPrice = "RM8.00"
-        ),
-        Item(
-            category = "Eggs & Dairy",
-            name = "Farm Fresh (Fresh Milk)",
-            imageResId = R.drawable.fresh_milk,
-            unit = "1L",
-            priceLow = "RM4.00",
-            priceHigh = "RM6.00",
-            jayaPrice = "RM4.50",
-            vgPrice = "RM5.00",
-            lotusPrice = "RM4.00",
-            bigPrice = "RM5.50",
-            aeonPrice = "RM6.00"
         ),
         Item(
             category = "Eggs & Dairy",

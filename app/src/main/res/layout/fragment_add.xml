@@ -5,29 +5,30 @@
     android:id="@+id/rootFl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFAFA"
     tools:context=".fragments.AddFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:scrollbarStyle="outsideInset">
 
         <HorizontalScrollView
             android:id="@+id/categoryBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FAFAFA"
             android:elevation="3dp"
+            android:padding="5dp"
             android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
 
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/fruitsTv"
@@ -36,11 +37,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:drawableBottom="@color/design_default_color_primary_variant"
+                    android:fadingEdge="vertical"
                     android:fontFamily="@font/alexandria_semibold"
                     android:padding="10dp"
                     android:text="Fruits"
                     android:textColor="#007AFF"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/veggiesTv"
@@ -53,7 +57,8 @@
                     android:padding="10dp"
                     android:text="Veggies"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/meatTv"
@@ -66,7 +71,8 @@
                     android:padding="10dp"
                     android:text="Meat"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/fishTv"
@@ -79,7 +85,8 @@
                     android:padding="10dp"
                     android:text="Fish"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/seafoodTv"
@@ -92,7 +99,8 @@
                     android:padding="10dp"
                     android:text="Seafood"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/dairyTv"
@@ -105,7 +113,8 @@
                     android:padding="10dp"
                     android:text="Eggs &amp; Dairy"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/snacksTv"
@@ -118,7 +127,8 @@
                     android:padding="10dp"
                     android:text="Snacks"
                     android:textColor="#34DC1E"
-                    android:textSize="22sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -131,16 +141,19 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp">
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:foregroundGravity="center_horizontal"
-                    android:scrollbars="none"
+                    android:layout_height="0dp"
+                    android:fillViewport="false"
                     android:overScrollMode="never"
+                    android:scrollbars="none"
                     android:visibility="visible"
-                    android:fillViewport="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -149,10 +162,8 @@
                         android:id="@+id/gridLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="0dp"
                         android:foregroundGravity="top|center_horizontal"
-                        app:columnCount="2"
-                        app:columnOrderPreserved="false" />
+                        app:columnCount="2" />
                 </ScrollView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

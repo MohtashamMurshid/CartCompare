@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemCard"
-    android:layout_width="wrap_content"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     android:padding="20dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="25dp"
+    app:cardElevation="8dp"
+    app:layout_columnWeight="1"
     tools:showIn="@layout/fragment_add">
 
     <LinearLayout
@@ -19,7 +20,7 @@
         android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="105dp"
             android:layout_margin="10dp">
 
@@ -49,7 +50,7 @@
             android:text="Apples"
             android:textAlignment="textStart"
             android:textColor="#1D1D1D"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -62,7 +63,7 @@
             android:text="1 kg"
             android:textAlignment="textStart"
             android:textColor="#787878"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,16 +85,19 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/addItem"
-                android:layout_width="27dp"
+                android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.88"
                 app:layout_constraintStart_toEndOf="@id/itemPrice"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.25">
 
                 <ImageView
                     android:layout_width="24dp"
