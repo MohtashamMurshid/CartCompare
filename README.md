@@ -1,46 +1,57 @@
-# Mobile Application Develeopment Final Project
 # Cartcompare
----
 # Inas: Add Fragment & Item Details
+---
+## What's New in v5: 
+  - _Restructured my Add Fragment_
+  - _centralized data management at: ItemRepository.kt_
+  - _completed all categories_
 
-_Here's what I already did_
+---
 
+## Overview of what's done
+    
 ### **1. Add Fragment:** 
 
-![image](https://github.com/user-attachments/assets/c6d638a4-168a-4540-855d-ba5e35b01c0b)
+![image](https://github.com/user-attachments/assets/a40ee996-7820-4511-ac1f-8e130a1a7b7d)
 
-- Fruits Fragment is a sub fragment embedded inside Add Fragment. 
-- In Fruits Fragment, if "+" button is clicked, notificiation "apples added to cart" is shown
+- Add Fragment's xml layout consists of sub-layouts: item_card.xml (refer image)
+- if "+" button is clicked, notificiation "apples added to cart" is shown
 - if the card of Apples/Mangoes/etc is selected, app navigates to Item Details Fragment
-- **I've only completed Fruit category**
+
+_p/s: item_card.xml is **just a template**_, but my code generates copies of the template and setup their details based on data from _ItemRepository.kt_
+
+
   
 ### **2. Item Details:** 
 
-![image](https://github.com/user-attachments/assets/b3cbe336-47db-404e-bd94-feee5dacedfd)
+![image](https://github.com/user-attachments/assets/73f9bf5a-c206-482a-a8ab-6de12bcdb88e)
+
 - this was supposed to be Sean's part but I accidentally overdid this woopsie, didn't realise it ;-;
 - the " -  0  + " feature doesn't function yet.
-- the sort by price feature works.
+- the sort by price feature works :D
 
-### **3. Extras:** 
+### **3. ItemRepository.kt** 
 
-a. "item.kt" is a data class acts as a blueprint for item details like itemName, aeonPrice, jayaPrice etc.. 
+a. **ItemRepository.kt** is where details for all item objects is coded
 
-- you can see the AppleDetails/MangoDetails/etc are set up in "ItemDetailsFragment.kt" 
+- If we wanna edit, add or delete data just do it here. 
 
-b. "FragmentSwitch.kt" is just an interface for navigation purposes
+![image](https://github.com/user-attachments/assets/d73f59db-9211-45c8-b208-8f24abfebf5f)
 
-- implemented at MainActivity.kt to navigate to Item Details Fragment
+
+b. **Item.kt**  is just a blueprint for the data in (a) ItemRepository.kt 
   
 ---
+
 ## What's needed to be done next?
 
 1. use ViewModel to store data of cart item details & quantity.
    
    - just chatgpt about it.
-   - can use other solutions if better.
+   - discuss other solutions than ViewModel if better.
      
-3. if (1) is completed, then we can make the " -  0  + " and "+" feature work. 
-4. Vesim & Moha can start designing UI of Cart Fragment
+2. if (1) is completed, then we can make the " -  0  + " and "+" feature work. 
+3. Vesim & Moha can start designing UI of Cart Fragment
    
 _p/s: 1 & 2 seems like a fair task so maybe Sean will do this part_
 
@@ -55,17 +66,17 @@ When making your fragment.kt, you'll need 3 of these basic setups: onCreateView(
 
 **1. onCreateView():**
 
-this is for binding your code.kt with ur design.xml file. here is example of my FruitsFragment.kt
+this is for binding your code.kt with ur design.xml file. here is example code to start in AFragment.kt, just copy but put your xml file name instead
   
-        //basic binding set ups. just change yours to your xml file name:
-        private var _binding: FragmentFruitsBinding? = null  //if file name is fragment_A.xml, write it as AFragmentBinding
+        //binding with your xml layout
+        private var _binding: FragmentABinding? = null  //if xml file name is fragment_A.xml, write it as FragmentABinding
         private val binding get() = _binding!!
     
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View? {
-            _binding = FragmentFruitsBinding.inflate(inflater, container, false) //change here also
+            _binding = FragmentABinding.inflate(inflater, container, false) //change here also !!
             return binding.root 
        
 **2. onViewCreated():**
