@@ -104,7 +104,16 @@ for cleaning up any references or resources that might cause memory leaks.
 
 _p/s: try to imitate the Figma UI design Moha made. You can just copy any elements or color codes from my xml layouts._
 
+see prototype:
+
+_https://www.figma.com/design/DePxUDJZNDtdEWumMWYphj/MAD-project?node-id=1-174&node-type=frame&t=3YIcnxKiPKPT7zzS-0_
+
 ---
+## Extra Features for the Future
+
+- search bar in add fragment
+- sort items in A-Z order by default
+- show list of categories first instead of entering fruit category by default, just like in prototype.
 
 ## Tips for Team Collaboration
 
