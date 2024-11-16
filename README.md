@@ -12,7 +12,7 @@
     
 ### **1. Add Fragment:** 
 
-![image](https://github.com/user-attachments/assets/a40ee996-7820-4511-ac1f-8e130a1a7b7d)
+![image](https://github.com/user-attachments/assets/f219892b-8fa6-4e74-9e1a-4f366b4888ea)
 
 - Add Fragment's xml layout consists of sub-layouts: item_card.xml (refer image)
 - if "+" button is clicked, notificiation "apples added to cart" is shown
@@ -24,7 +24,7 @@ _p/s: item_card.xml is **just a template**_, but my code generates copies of the
   
 ### **2. Item Details:** 
 
-![image](https://github.com/user-attachments/assets/73f9bf5a-c206-482a-a8ab-6de12bcdb88e)
+![image](https://github.com/user-attachments/assets/2bb2b421-708a-4895-822a-8b397b47f80e)
 
 - this was supposed to be Sean's part but I accidentally overdid this woopsie, didn't realise it ;-;
 - the " -  0  + " feature doesn't function yet.
