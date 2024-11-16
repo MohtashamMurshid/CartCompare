@@ -7,6 +7,7 @@
     android:layout_column="2"
     android:layout_columnSpan="2"
     android:layout_columnWeight="2"
+    android:background="#FAFAFA"
     tools:context=".fragments.ItemDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,13 +18,13 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:scrollbars="none"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:scrollbars="none">
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -212,7 +213,7 @@
 
                 <androidx.gridlayout.widget.GridLayout
                     android:id="@+id/cardLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="25dp"
@@ -221,13 +222,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/jayaCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        app:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -252,7 +254,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
@@ -268,19 +270,20 @@
                                     android:textAlignment="textStart"
                                     android:textColor="#1D1D1D"
                                     android:textSize="15sp"
+                                    android:textStyle="bold"
                                     android:visibility="visible"
                                     tools:layout_marginLeft="5dp" />
 
                                 <TextView
                                     android:id="@+id/jayaPrice"
-                                    android:layout_width="72dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:foregroundGravity="right"
                                     android:text="RM4.30"
                                     android:textAlignment="textEnd"
                                     android:textColor="#34DC1E"
-                                    android:textSize="15sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:visibility="visible" />
                             </LinearLayout>
@@ -290,13 +293,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/lotusCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        app:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -321,7 +325,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
@@ -343,14 +347,14 @@
 
                                 <TextView
                                     android:id="@+id/lotusPrice"
-                                    android:layout_width="72dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:foregroundGravity="right"
                                     android:text="RM4.40"
                                     android:textAlignment="textEnd"
                                     android:textColor="#FF7338"
-                                    android:textSize="15sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:visibility="visible" />
                             </LinearLayout>
@@ -360,13 +364,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/bigCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        app:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -391,7 +396,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
@@ -413,14 +418,14 @@
 
                                 <TextView
                                     android:id="@+id/bigPrice"
-                                    android:layout_width="72dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:foregroundGravity="right"
                                     android:text="RM4.60"
                                     android:textAlignment="textEnd"
                                     android:textColor="#FF7338"
-                                    android:textSize="15sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:visibility="visible" />
                             </LinearLayout>
@@ -430,13 +435,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/aeonCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        app:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -461,7 +467,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
@@ -483,14 +489,14 @@
 
                                 <TextView
                                     android:id="@+id/aeonPrice"
-                                    android:layout_width="72dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right"
                                     android:foregroundGravity="right"
                                     android:text="RM4.90"
                                     android:textAlignment="textEnd"
                                     android:textColor="#FF7338"
-                                    android:textSize="15sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:visibility="visible" />
                             </LinearLayout>
@@ -500,13 +506,14 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/vgCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        app:layout_gravity="center_horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -531,7 +538,7 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="45dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginRight="10dp"
@@ -552,14 +559,14 @@
 
                                 <TextView
                                     android:id="@+id/vgPrice"
-                                    android:layout_width="72dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|top|center_vertical"
                                     android:foregroundGravity="right"
                                     android:text="RM5.20"
                                     android:textAlignment="textEnd"
                                     android:textColor="#FF0004"
-                                    android:textSize="15sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold"
                                     android:visibility="visible" />
                             </LinearLayout>

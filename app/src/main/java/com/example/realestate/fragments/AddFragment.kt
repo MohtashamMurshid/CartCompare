@@ -2,24 +2,29 @@ package com.example.realestate.fragments
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import com.example.realestate.FragmentSwitch
+import androidx.fragment.app.FragmentManager
+import com.example.realestate.ItemRepository
+import com.example.realestate.R
 import com.example.realestate.databinding.FragmentAddBinding
 
 class AddFragment : Fragment() {
-    //creating instanc of FruitFragment
-    private val fruitsFragment = FruitsFragment()
-    private val itemDetailsFragment = ItemDetailsFragment()
 
+    private val itemDetailsFragment = ItemDetailsFragment()
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
-
-    //prepping UI: inflate xml elements, bind code with them & return the root view of addfragment.xml
-    override fun onCreateView(
+    
+    override fun onCreateView( //binding process with fragment_add.xml
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -27,16 +32,9 @@ class AddFragment : Fragment() {
         return binding.root
     }
 
-    //now that the binding is done, here you can setup UI interactions
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //now that the binding is done, Im setting up UI interactions and logic here
         super.onViewCreated(view, savedInstanceState) //mandatory
-
-        //replaces itemsSectionFl with fruits fragment by default.
-        if (savedInstanceState == null) {
-            childFragmentManager.beginTransaction()
-                .replace(binding.itemsSectionFl.id, fruitsFragment)
-                .commit()
-        }
 
         //setting up colors for selected catogeries
         val textViewList = listOf(
@@ -45,8 +43,8 @@ class AddFragment : Fragment() {
             binding.meatTv,
             binding.fishTv,
             binding.seafoodTv,
-            binding.juiceTv,
-            binding.eggsMilkTv
+            binding.dairyTv,
+            binding.snacksTv
         )
 
         // setting up click listeners for each category
@@ -58,16 +56,24 @@ class AddFragment : Fragment() {
                 // Set the clicked TextView's color to the selected color
                 textView.setTextColor(Color.parseColor("#007AFF"))
 
+                //clear current category
+                binding.gridLayout.removeAllViews()
                 //show the selected category
                 when(it.id){
-                        binding.fruitsTv.id -> showCategoryFragment("Fruits")
-                        //binding.veggiesTv.id -> showCategoryFragment("Veggies")
-                        //binding.meatTv.id -> showCategoryFragment("Meat")
-                        //binding.fishTv.id -> showCategoryFragment("Fish")
+                    binding.fruitsTv.id -> showItems("Fruits")
+                    binding.veggiesTv.id -> showItems("Veggies")
+                    binding.meatTv.id -> showItems("Meat")
+                    binding.fishTv.id -> showItems("Fish")
+                    binding.seafoodTv.id -> showItems("Seafood")
+                    binding.dairyTv.id -> showItems("Eggs & Dairy")
+                    binding.snacksTv.id -> showItems("Snacks")
                 }
 
             }
         }
+
+        showItems("Fruits")
+
     }
 
     //for cleaning up any references or resources that might cause memory leaks
@@ -76,21 +82,49 @@ class AddFragment : Fragment() {
         _binding = null // Prevent memory leaks
     }
 
-    private fun showCategoryFragment(category: String){
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+    private fun showItems(category: String){
 
-        when (category) {
-            "Fruits" -> {
-                transaction.replace(binding.itemsSectionFl.id, fruitsFragment)
-                Toast.makeText(requireContext(), "Fruits Category", Toast.LENGTH_SHORT).show()
 
+        //fetching list of items from the category
+        ItemRepository.getItemByCategory(category)?.forEach{ item->
+            // Inflate the item_card.xml layout for each item
+            val itemCardView = LayoutInflater.from(context).inflate(R.layout.item_card, binding.gridLayout, false) as CardView
+
+            item?.let {
+                // Fill up the card with item data
+                itemCardView.findViewById<TextView>(R.id.itemName).text = item.name
+                itemCardView.findViewById<TextView>(R.id.unit).text = item.unit
+                itemCardView.findViewById<TextView>(R.id.itemPrice).text = item.priceLow
+
+                // Set the image
+                itemCardView.findViewById<ImageView>(R.id.itemImage).setImageResource(it.imageResId)
+
+                //setClickListeners on "+" button
+                itemCardView.findViewById<ConstraintLayout>(R.id.addItem).setOnClickListener {
+                    Toast.makeText(requireContext(),"${item.name} added to cart",Toast.LENGTH_SHORT).show()
+                }
+
+                //setClickListener on whole card
+                itemCardView.rootView.setOnClickListener {
+                    //bundle is for passing data between fragments
+                    val bundle = Bundle()
+                    bundle.putString("item", item.name) // Pass item data so that ItemDetails know which item to show
+                    itemDetailsFragment.arguments = bundle
+
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                    // Perform the fragment transaction
+                    transaction.replace(R.id.rootFl, itemDetailsFragment)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+                    Toast.makeText(requireContext(),"${item.name} details shown",Toast.LENGTH_SHORT).show()
+
+
+                }
+                // Add the card to the GridLayout
+                binding.gridLayout.addView(itemCardView)
             }
-            //dummy code for now:
-            "Veggies" -> { }
-            "Meat" -> { }
-            "Fish" -> { }
         }
-        transaction.commit() // .replace() must be followed by .commit()
+
     }
 
 

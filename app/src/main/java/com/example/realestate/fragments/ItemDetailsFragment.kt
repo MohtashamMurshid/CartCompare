@@ -5,15 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.example.realestate.R
-import com.example.realestate.databinding.FragmentAddBinding
-import com.example.realestate.databinding.FragmentAddBinding.*
-import com.example.realestate.databinding.FragmentFruitsBinding
 import com.example.realestate.databinding.FragmentItemDetailsBinding
 import com.example.realestate.Item
+import com.example.realestate.ItemRepository
 
 private typealias priceCardList = Pair<Float, View>
 
@@ -34,84 +30,12 @@ class ItemDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //setup the details for each item
-        val appleDetails = Item(
-            name = "Apples",
-            imageResId = R.drawable.apples,
-            unit = "/1kg",
-            priceLow = "RM5.70",
-            priceHigh = "RM6.30",
-            jayaPrice = "RM5.70",
-            vgPrice = "RM6.00",
-            lotusPrice = "RM5.90",
-            bigPrice = "RM6.20",
-            aeonPrice = "RM6.30"
-        )
-
-        val mangoDetails = Item(
-            name = "Mangoes",
-            imageResId = R.drawable.mangoes,
-            unit = "/1kg",
-            priceLow = "RM6.00",
-            priceHigh = "RM7.50",
-            jayaPrice = "RM6.00",
-            vgPrice = "RM7.50",
-            lotusPrice = "RM6.20",
-            bigPrice = "RM6.80",
-            aeonPrice = "RM7.20"
-        )
-
-        val watermelonDetails = Item(
-            name = "Watermelon",
-            imageResId = R.drawable.watermelon,
-            unit = "/1kg",
-            priceLow = "RM2.20",
-            priceHigh = "RM3.20",
-            jayaPrice = "RM2.50",
-            vgPrice = "RM3.00",
-            lotusPrice = "RM2.20",
-            bigPrice = "RM2.80",
-            aeonPrice = "RM3.20"
-        )
-
-        val strawberryDetails = Item(
-            name = "Strawberry",
-            imageResId = R.drawable.strawberry,
-            unit = "/250g",
-            priceLow = "RM9.50",
-            priceHigh = "RM11.50",
-            jayaPrice = "RM9.50",
-            vgPrice = "RM10.50",
-            lotusPrice = "RM9.80",
-            bigPrice = "RM10.90",
-            aeonPrice = "RM11.50"
-        )
-
-        val bananaDetails = Item(
-            name = "Bananas",
-            imageResId = R.drawable.bananas,
-            unit = "/1kg",
-            priceLow = "RM3.20",
-            priceHigh = "RM4.20",
-            jayaPrice = "RM3.20",
-            vgPrice = "RM4.00",
-            lotusPrice = "RM3.50",
-            bigPrice = "RM3.80",
-            aeonPrice = "RM4.20"
-        )
-
-        // Retrieve the item passed from the activity and show the details
+        // Retrieve the item passed from the activity and show the details. bcs the detail has to depend on which item user selected
         arguments?.getString("item")?.let {
-            val whatDetails = when(it) {
-                "Apples" -> appleDetails
-                "Mangoes" -> mangoDetails
-                "Watermelon" -> watermelonDetails
-                "Strawberry" -> strawberryDetails
-                "Bananas" -> bananaDetails
-                else -> null
-            }
+            val itemDetails = ItemRepository.getItemByName(it)
 
-            whatDetails?.let{
+            //filling up the xml template with the item details
+            itemDetails?.let{
                 binding.itemName.text = it.name
                 binding.itemImage.setImageResource(it.imageResId)
                 binding.unit.text = it.unit
@@ -122,8 +46,6 @@ class ItemDetailsFragment : Fragment() {
                 binding.lotusPrice.text = it.lotusPrice
                 binding.bigPrice.text = it.bigPrice
                 binding.aeonPrice.text = it.aeonPrice
-
-//                Toast.makeText(requireContext(), "${it.name} Details Are Showing", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -160,6 +82,7 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        _binding = null // Prevent memory leaks
     }
 
     private fun sortIncrease(list: List<Pair<Float, View>>) {
@@ -184,8 +107,13 @@ class ItemDetailsFragment : Fragment() {
     }
 
     private fun sortDecrease(list: List<Pair<Float, View>>) {
+        //sort high to low price
         val sortedPriceCardList = list.sortedByDescending{ it.first }
+
+        //remove all cards to rearrange later
         binding.cardLayout.removeAllViews()
+
+        //no need to set color again because the app sorts by increase by default, and in sortIncrease we have set up the color tags
         sortedPriceCardList.forEach { pair ->
             binding.cardLayout.addView(pair.second)
         }

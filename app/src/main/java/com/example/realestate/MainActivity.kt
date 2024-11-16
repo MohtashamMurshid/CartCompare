@@ -11,7 +11,7 @@ import com.example.realestate.fragments.HomeFragment
 import com.example.realestate.fragments.ItemDetailsFragment
 import com.example.realestate.fragments.ProfileFragment
 
-class MainActivity : AppCompatActivity(), FragmentSwitch {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val itemDetailsFragment = ItemDetailsFragment()
@@ -45,26 +45,6 @@ class MainActivity : AppCompatActivity(), FragmentSwitch {
             }
             true
         }
-    }
-
-    //handling interface
-    override fun showItemDetailFragment(item: String){
-        if (isFinishing || isDestroyed) {
-            return
-        }
-
-        //transcation of Frame layout from fruitsFragment to itemDetailsFragment
-        val transaction = supportFragmentManager.beginTransaction()
-        val bundle = Bundle()
-        bundle.putString("item", item) // Pass item data
-        itemDetailsFragment.arguments = bundle
-        transaction.replace(binding.fragmentsFl.id, itemDetailsFragment)
-        transaction.addToBackStack(null) //allows back navigation
-        transaction.commit()
-
-//        itemDetailsFragment.showItemDetails(item)
-        //have to bind with itemDetailsfragment's xml
-
     }
 
     private fun showHomeFragment(){

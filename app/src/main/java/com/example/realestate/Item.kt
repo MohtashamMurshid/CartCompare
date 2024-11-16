@@ -1,6 +1,7 @@
 package com.example.realestate
 
 data class Item(
+    val category: String,
     val name: String,
     val imageResId: Int,
     val unit: String,
