@@ -1,116 +1,102 @@
 # Mobile Application Develeopment Final Project
 # Cartcompare
+---
+# Inas: Add Fragment & Item Details
 
-# (Please reach out to me if u need any help)
-This project is a starter template for our mobile app with a basic layout. It includes **four different fragments** that each of us will develop individually. Each fragment represents a section of the app, allowing us to work independently and then bring it all together.
+_Here's what I already did_
 
-### Fragments in the Project
-- **Fragment 1:** Home
-- **Fragment 2:** Add
-    ### Sean (Indivisual Cart Comparision) and Ines (Add or Drop)  
-- **Fragment 3:** Cart
-    ### Vesim and Moha ( Total Cart Price Comparision)
-- **Fragment 4:** Profile
+### **1. Add Fragment:** 
 
+![image](https://github.com/user-attachments/assets/c6d638a4-168a-4540-855d-ba5e35b01c0b)
+
+- Fruits Fragment is a sub fragment embedded inside Add Fragment. 
+- In Fruits Fragment, if "+" button is clicked, notificiation "apples added to cart" is shown
+- if the card of Apples/Mangoes/etc is selected, app navigates to Item Details Fragment
+- **I've only completed Fruit category**
   
-![image](https://github.com/user-attachments/assets/5c666508-558d-4e14-bf80-a0b8d578ed17)
+### **2. Item Details:** 
 
+![image](https://github.com/user-attachments/assets/b3cbe336-47db-404e-bd94-feee5dacedfd)
+- this was supposed to be Sean's part but I accidentally overdid this woopsie, didn't realise it ;-;
+- the " -  0  + " feature doesn't function yet.
+- the sort by price feature works.
 
+### **3. Extras:** 
 
+a. "item.kt" is a data class acts as a blueprint for item details like itemName, aeonPrice, jayaPrice etc.. 
 
+- you can see the AppleDetails/MangoDetails/etc are set up in "ItemDetailsFragment.kt" 
 
-## Getting Started with the Project
+b. "FragmentSwitch.kt" is just an interface for navigation purposes
 
-### Step 1: Set Up Git
-1. **Install Git** (if you haven’t already):
-   - **Windows:** Download Git from [https://git-scm.com/downloads](https://git-scm.com/downloads) and follow the installation steps.
-   - **Mac:** Git is usually pre-installed on Mac. You can confirm by opening Terminal and typing `git --version`.
-   - **Linux:** Open Terminal and use the command: `sudo apt-get install git`.
-2. **Set Up GitHub**:
-   - Make sure you have a GitHub account and are added to the repository.
-
-### Step 2: Clone the Repository
-1. Go to our project’s GitHub page and find the green **Code** button.
-2. Copy the HTTPS link under **Clone**.
-3. Open **Android Studio** and select **File > New > Project from Version Control**.
-4. Paste the link and click **OK**. This will download the project files to your computer.
-
-### Step 3: Open the Project in Android Studio
-1. Once the project is cloned, **Android Studio** should open it automatically.
-2. Android Studio will detect missing dependencies and ask if you want to install them. **Accept all prompts** for Gradle sync and dependencies.
-
+- implemented at MainActivity.kt to navigate to Item Details Fragment
+  
 ---
+## What's needed to be done next?
 
-## Setting Up Dependencies
-To make sure everything works smoothly, let’s make sure all libraries and dependencies are installed:
-1. **Check Dependencies**:
-   - Go to **File > Project Structure > Dependencies** and look for any warnings or missing items.
-   - Click **Install** if you see any prompts.
+1. use ViewModel to store data of cart item details & quantity.
    
-2. **Sync Gradle**:
-   - In the top right corner of Android Studio, you’ll see an **"Sync Project with Gradle Files"** option. Click it to ensure all dependencies are set up.
-
-3. **Build the Project**:
-   - Click **Build > Rebuild Project**. This will check for any issues and prepare the app to run on an emulator or device.
+   - just chatgpt about it.
+   - can use other solutions if better.
+     
+3. if (1) is completed, then we can make the " -  0  + " and "+" feature work. 
+4. Vesim & Moha can start designing UI of Cart Fragment
+   
+_p/s: 1 & 2 seems like a fair task so maybe Sean will do this part_
 
 ---
+## Basic Tips on How To Start
 
-## Using Git: Branches and Commits
+Each fragment comes along with a UI design: xml file.
 
-To keep our work separate and avoid conflicts, we’ll each work in our own Git branch.
+All fragments will need some sorta binding process, to link code with its xml. so just follow these structures:
 
-### Step 4: Create Your Branch
-1. **Open the terminal in Android Studio**:
-   - Go to **View > Tool Windows > Terminal** or press **Alt + F12**.
-2. **Create a branch for your work**:
-   - Type this command, replacing `[Your_Name]` with your name or assigned fragment:
-     ```bash
-     git checkout -b [Your_Name]
-     ```
-   - Example: `git checkout -b Sarah` (This creates a new branch called **Sarah**).
-3. **Push your branch to GitHub** so others can see it:
-   - Type:
-     ```bash
-     git push -u origin [Your_Name]
-     ```
-   - This command saves your branch to GitHub.
+When making your fragment.kt, you'll need 3 of these basic setups: onCreateView(), onViewCreated(), onVeiwDestroyed()
 
-### Step 5: Start Working on Your Fragment
-Now, go to your fragment file in Android Studio and start building the features assigned to you. 
+**1. onCreateView():**
 
-- **Save regularly** by pressing **Ctrl + S**.
-- **Test your changes** on an emulator or physical device by clicking **Run** in the top toolbar.
+this is for binding your code.kt with ur design.xml file. here is example of my FruitsFragment.kt
+  
+        //basic binding set ups. just change yours to your xml file name:
+        private var _binding: FragmentFruitsBinding? = null  //if file name is fragment_A.xml, write it as AFragmentBinding
+        private val binding get() = _binding!!
+    
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            _binding = FragmentFruitsBinding.inflate(inflater, container, false) //change here also
+            return binding.root 
+       
+**2. onViewCreated():**
 
-### Step 6: Make Commits to Save Progress
-When you’re ready to save a snapshot of your work:
-1. **Stage Changes**:
-   - In **Git > Commit...**, select the files you’ve worked on.
-2. **Write a commit message** (a short description of what you’ve done, like "Created layout for Fragment 2").
-3. **Commit and Push**:
-   - After committing, click **Push** to upload your work to GitHub.
+this is where you code all UI interactions here. you can now call your xml elements using "binding.yourElementId" 
+     
+      override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-### Step 7: Regularly Pull Updates
-To keep your branch up-to-date with everyone else’s work:
-1. Switch to the main branch:
-   ```bash
-   git checkout main
-   ```
-2. Pull the latest changes:
-   ```bash
-   git pull origin main
-   ```
-3. Switch back to your branch:
-   ```bash
-   git checkout [Your_Name]
-   ```
-4. **Merge any updates** from main to your branch to make sure you’re working with the latest code:
-   ```bash
-   git merge main
-   ```
+          //example
+          binding.YourButton.setOnClickListener{
+              //bla bla bla
+          }
+       }
+       
+**3. onViewDestroyed():**
+
+for cleaning up any references or resources that might cause memory leaks.
+        
+        override fun onDestroyView() {
+            super.onDestroyView()
+            _binding = null // Prevent memory leaks
+        }
+
+
+_p/s: try to imitate the Figma UI design Moha made. You can just copy any elements or color codes from my xml layouts._
 
 ---
 
 ## Tips for Team Collaboration
+
 - **Pull from main frequently** to make sure you’re not missing any updates.
 - **Communicate regularly**: If you’re making big changes or finishing your work, let the team know.
 - **Ask for help**: If you get stuck, reach out. It’s better to solve issues together than to struggle alone.
