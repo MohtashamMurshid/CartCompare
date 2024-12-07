@@ -1,4 +1,4 @@
-package com.example.bounty.fragments
+package com.example.realestate.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +31,20 @@ class ProfileFragment : Fragment() {
         view.findViewById<View>(R.id.payments_option).setOnClickListener {
             Toast.makeText(requireContext(), "Payments Clicked", Toast.LENGTH_SHORT).show()
         }
+        view.findViewById<View>(R.id.notifications_option).setOnClickListener {
+            Toast.makeText(requireContext(), "Notification Clicked", Toast.LENGTH_SHORT).show()
+        }
 
-        // Add similar click listeners for other options (Notifications, FAQ, etc.)
+        view.findViewById<View>(R.id.faq_option).setOnClickListener {
+            Toast.makeText(requireContext(), "FaQ Clicked", Toast.LENGTH_SHORT).show()
+        }
+        view.findViewById<View>(R.id.settings_option).setOnClickListener {
+            Toast.makeText(requireContext(), "Settings Clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        view.findViewById<View>(R.id.signout_option).setOnClickListener {
+            Toast.makeText(requireContext(), "Logging out ", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

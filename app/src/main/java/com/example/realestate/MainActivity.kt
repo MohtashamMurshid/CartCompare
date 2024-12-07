@@ -1,7 +1,7 @@
 package com.example.realestate
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.realestate.databinding.ActivityMainBinding
@@ -15,6 +15,13 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val itemDetailsFragment = ItemDetailsFragment()
+    fun setToolbarVisibility(isVisible: Boolean) {
+        if (isVisible) {
+            binding.toolbarTitleTv.visibility = View.VISIBLE
+        } else {
+            binding.toolbarTitleTv.visibility = View.GONE
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -31,16 +38,23 @@ class MainActivity : AppCompatActivity() {
 
             when(itemId){
                 R.id.item_home-> {
+
                     showHomeFragment()
                 }
                 R.id.item_add ->{
                     showAddFragment()
+
+
                 }
                 R.id.item_cart->{
                     showCartFragment()
+
+
                 }
                 R.id.item_person ->{
                     showProfileFragment()
+
+
                 }
             }
             true
