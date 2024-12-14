@@ -3,6 +3,8 @@
     
 <resources>
     <dimen name="m_toolbar_height">55dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
     <dimen name="m_button_height">60dp</dimen>
 
 </resources>

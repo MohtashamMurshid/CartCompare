@@ -5,19 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.example.realestate.Item
 import com.example.realestate.R
 import com.example.realestate.databinding.FragmentItemDetailsBinding
-import com.example.realestate.Item
 import com.example.realestate.ItemRepository
+import com.example.realestate.SharedCartViewModel
 
 private typealias priceCardList = Pair<Float, View>
 
 class ItemDetailsFragment : Fragment() {
 
+    private val sharedViewModel: SharedCartViewModel by activityViewModels()
     private var _binding: FragmentItemDetailsBinding? = null //we must name xml files like: fragment_A, and Android studio will automatically generate class called AFragment.
     private val binding get() = _binding!!
     private var item: String? = null
+    private var currentQuantity: Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,23 +37,65 @@ class ItemDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Retrieve the item passed from the activity and show the details. bcs the detail has to depend on which item user selected
-        arguments?.getString("item")?.let {
-            val itemDetails = ItemRepository.getItemByName(it)
+        arguments?.let { bundle ->
+            val itemName = bundle.getString("item") // Corrected usage of getString
+            bundle.getInt("imageResId", R.drawable.placeholder_image) // Corrected usage of getInt
+
+            val itemDetails = itemName?.let { ItemRepository.getItemByName(it) }
 
             //filling up the xml template with the item details
-            itemDetails?.let{
-                binding.itemName.text = it.name
-                binding.itemImage.setImageResource(it.imageResId)
-                binding.unit.text = it.unit
-                binding.priceLow.text = it.priceLow
-                binding.priceHigh.text = it.priceHigh
-                binding.jayaPrice.text = it.jayaPrice
-                binding.vgPrice.text = it.vgPrice
-                binding.lotusPrice.text = it.lotusPrice
-                binding.bigPrice.text = it.bigPrice
-                binding.aeonPrice.text = it.aeonPrice
+            itemDetails?.let { details ->
+                binding.itemName.text = details.name
+                binding.itemImage.setImageResource(details.imageResId)
+                binding.unit.text = details.unit
+                binding.priceLow.text = details.priceLow
+                binding.priceHigh.text = details.priceHigh
+                binding.jayaPrice.text = details.jayaPrice
+                binding.vgPrice.text = details.vgPrice
+                binding.lotusPrice.text = details.lotusPrice
+                binding.bigPrice.text = details.bigPrice
+                binding.aeonPrice.text = details.aeonPrice
             }
         }
+        // Update quantity
+        updateQuantityDisplay()
+
+        // Increment quantity
+        binding.addItem.setOnClickListener {
+            currentQuantity++
+            updateQuantityDisplay()
+        }
+
+        // Decrement quantity
+        binding.minusItem.setOnClickListener {
+            if (currentQuantity > 0) {
+                currentQuantity--
+                updateQuantityDisplay()
+            } else {
+                Toast.makeText(requireContext(), "Quantity can't be less than 0", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.cartItemImg.setOnClickListener {
+            if (currentQuantity > 0) {
+                val item = Item(
+                    name = binding.itemName.text.toString(),
+                    category = "Fruits",
+                    unit = binding.unit.text.toString(),
+                    priceLow = binding.priceLow.text.toString(),
+                    price = binding.priceLow.text.toString(),
+                    imageResId = arguments?.getInt("imageResId") ?: R.drawable.placeholder_image, // Pass correct imageResId
+                    priceHigh = binding.priceHigh.text.toString(),
+                    aeonPrice = binding.aeonPrice.text.toString(),
+                    bigPrice = binding.bigPrice.text.toString(),
+                    lotusPrice = binding.lotusPrice.text.toString(),
+                    jayaPrice = binding.jayaPrice.text.toString(),
+                    vgPrice = binding.vgPrice.text.toString(),
+                    quantity = currentQuantity
+                )
+                sharedViewModel.addItem(item)
+            }
+        }
+
 
         //navigates back
         binding.backIcon.setOnClickListener{
@@ -119,6 +167,7 @@ class ItemDetailsFragment : Fragment() {
         }
     }
 
+
     private fun setPriceColor(id: Int, color: String){
         when(id){
             R.id.aeonCard -> binding.aeonPrice.setTextColor(Color.parseColor(color))
@@ -127,6 +176,10 @@ class ItemDetailsFragment : Fragment() {
             R.id.lotusCard -> binding.lotusPrice.setTextColor(Color.parseColor(color))
             R.id.vgCard -> binding.vgPrice.setTextColor(Color.parseColor(color))
         }
+    }
+    // Update quantity in the UI
+    private fun updateQuantityDisplay() {
+        binding.quantityTv.text = currentQuantity.toString()
     }
 
 

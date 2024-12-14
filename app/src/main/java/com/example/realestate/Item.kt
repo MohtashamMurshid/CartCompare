@@ -3,7 +3,9 @@ package com.example.realestate
 data class Item(
     val category: String,
     val name: String,
+    var quantity: Int,
     val imageResId: Int,
+    val price: String,
     val unit: String,
     val priceLow: String,
     val priceHigh: String,
@@ -13,3 +15,4 @@ data class Item(
     val bigPrice: String,
     val aeonPrice: String
 )
+

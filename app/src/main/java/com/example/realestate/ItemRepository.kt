@@ -1,12 +1,26 @@
 package com.example.realestate
 
+import androidx.lifecycle.MutableLiveData
+
 object ItemRepository {
+    private val _itemQuantities = mutableMapOf<String, Int>() // Maps item names to quantities
+    val itemQuantities = MutableLiveData<Map<String, Int>>(_itemQuantities)
+
     fun getItemByName(name: String): Item? {
         return items.find { it.name.equals(name, ignoreCase = true) }
     }
 
-    fun getItemByCategory(category: String): List<Item>?{
+    fun getItemByCategory(category: String): List<Item>? {
         return items.filter { it.category.equals(category, ignoreCase = true) }
+    }
+
+    fun updateQuantity(name: String, quantity: Int) {
+        _itemQuantities[name] = quantity
+        itemQuantities.value = _itemQuantities.toMap() // Notify observers
+    }
+
+    fun getQuantity(name: String): Int {
+        return _itemQuantities[name] ?: 0 // Default to 0 if not found
     }
 
     val items = listOf(
@@ -21,7 +35,9 @@ object ItemRepository {
             vgPrice = "RM6.00",
             lotusPrice = "RM5.90",
             bigPrice = "RM6.20",
-            aeonPrice = "RM6.30"
+            aeonPrice = "RM6.30",
+            price = "RM5.70",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -34,7 +50,9 @@ object ItemRepository {
             vgPrice = "RM7.50",
             lotusPrice = "RM6.20",
             bigPrice = "RM6.80",
-            aeonPrice = "RM7.20"
+            aeonPrice = "RM7.20",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -47,7 +65,9 @@ object ItemRepository {
             vgPrice = "RM3.00",
             lotusPrice = "RM2.20",
             bigPrice = "RM2.80",
-            aeonPrice = "RM3.20"
+            aeonPrice = "RM3.20",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -60,7 +80,9 @@ object ItemRepository {
             vgPrice = "RM10.50",
             lotusPrice = "RM9.80",
             bigPrice = "RM10.90",
-            aeonPrice = "RM11.50"
+            aeonPrice = "RM11.50",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -73,7 +95,9 @@ object ItemRepository {
             vgPrice = "RM4.00",
             lotusPrice = "RM3.50",
             bigPrice = "RM3.80",
-            aeonPrice = "RM4.20"
+            aeonPrice = "RM4.20",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -86,7 +110,9 @@ object ItemRepository {
             vgPrice = "RM18.00",
             lotusPrice = "RM15.00",
             bigPrice = "RM19.00",
-            aeonPrice = "RM20.00"
+            aeonPrice = "RM20.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -99,7 +125,9 @@ object ItemRepository {
             vgPrice = "RM100.00",
             lotusPrice = "RM80.00",
             bigPrice = "RM110.00",
-            aeonPrice = "RM120.00"
+            aeonPrice = "RM120.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fruits",
@@ -112,7 +140,9 @@ object ItemRepository {
             vgPrice = "RM13.00",
             lotusPrice = "RM10.00",
             bigPrice = "RM14.00",
-            aeonPrice = "RM15.00"
+            aeonPrice = "RM15.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Veggies",
@@ -125,7 +155,9 @@ object ItemRepository {
             vgPrice = "RM2.00",
             lotusPrice = "RM1.50",
             bigPrice = "RM2.20",
-            aeonPrice = "RM2.50"
+            aeonPrice = "RM2.50",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Veggies",
@@ -138,7 +170,9 @@ object ItemRepository {
             vgPrice = "RM3.00",
             lotusPrice = "RM2.00",
             bigPrice = "RM3.50",
-            aeonPrice = "RM2.80"
+            aeonPrice = "RM2.80",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Vegetables",
@@ -151,7 +185,9 @@ object ItemRepository {
             vgPrice = "RM4.00",
             lotusPrice = "RM3.00",
             bigPrice = "RM4.50",
-            aeonPrice = "RM5.00"
+            aeonPrice = "RM5.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Vegetables",
@@ -164,7 +200,9 @@ object ItemRepository {
             vgPrice = "RM4.00",
             lotusPrice = "RM3.00",
             bigPrice = "RM4.50",
-            aeonPrice = "RM5.00"
+            aeonPrice = "RM5.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Veggies",
@@ -177,7 +215,9 @@ object ItemRepository {
             vgPrice = "RM5.00",
             lotusPrice = "RM4.00",
             bigPrice = "RM5.50",
-            aeonPrice = "RM6.00"
+            aeonPrice = "RM6.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Veggies",
@@ -190,33 +230,39 @@ object ItemRepository {
             vgPrice = "RM3.20",
             lotusPrice = "RM2.50",
             bigPrice = "RM3.50",
-            aeonPrice = "RM3.00"
+            aeonPrice = "RM3.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
-        category = "Veggies",
-        name = "Cabbage",
-        imageResId = R.drawable.cabbage,
-        unit = "/500g",
-        priceLow = "RM1.50",
-        priceHigh = "RM2.50",
-        jayaPrice = "RM1.80",
-        vgPrice = "RM2.00",
-        lotusPrice = "RM1.50",
-        bigPrice = "RM2.20",
-        aeonPrice = "RM2.50"
+            category = "Veggies",
+            name = "Cabbage",
+            imageResId = R.drawable.cabbage,
+            unit = "/500g",
+            priceLow = "RM1.50",
+            priceHigh = "RM2.50",
+            jayaPrice = "RM1.80",
+            vgPrice = "RM2.00",
+            lotusPrice = "RM1.50",
+            bigPrice = "RM2.20",
+            aeonPrice = "RM2.50",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
-        category = "Veggies",
-        name = "Lettuce",
-        imageResId = R.drawable.lettuce,
-        unit = "/1 head",
-        priceLow = "RM2.00",
-        priceHigh = "RM3.50",
-        jayaPrice = "RM2.50",
-        vgPrice = "RM3.00",
-        lotusPrice = "RM2.00",
-        bigPrice = "RM3.50",
-        aeonPrice = "RM2.80"
+            category = "Veggies",
+            name = "Lettuce",
+            imageResId = R.drawable.lettuce,
+            unit = "/1 head",
+            priceLow = "RM2.00",
+            priceHigh = "RM3.50",
+            jayaPrice = "RM2.50",
+            vgPrice = "RM3.00",
+            lotusPrice = "RM2.00",
+            bigPrice = "RM3.50",
+            aeonPrice = "RM2.80",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meats",
@@ -229,7 +275,9 @@ object ItemRepository {
             vgPrice = "RM10.00",
             lotusPrice = "RM8.00",
             bigPrice = "RM11.00",
-            aeonPrice = "RM12.00"
+            aeonPrice = "RM12.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meats",
@@ -242,7 +290,9 @@ object ItemRepository {
             vgPrice = "RM38.00",
             lotusPrice = "RM30.00",
             bigPrice = "RM37.00",
-            aeonPrice = "RM40.00"
+            aeonPrice = "RM40.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meat",
@@ -255,7 +305,9 @@ object ItemRepository {
             vgPrice = "RM11.00",
             lotusPrice = "RM10.00",
             bigPrice = "RM11.50",
-            aeonPrice = "RM12.00"
+            aeonPrice = "RM12.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meat",
@@ -268,7 +320,9 @@ object ItemRepository {
             vgPrice = "RM17.00",
             lotusPrice = "RM15.00",
             bigPrice = "RM17.50",
-            aeonPrice = "RM18.00"
+            aeonPrice = "RM18.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meat",
@@ -281,7 +335,9 @@ object ItemRepository {
             vgPrice = "RM23.00",
             lotusPrice = "RM20.00",
             bigPrice = "RM24.00",
-            aeonPrice = "RM25.00"
+            aeonPrice = "RM25.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Meat",
@@ -294,7 +350,9 @@ object ItemRepository {
             vgPrice = "RM33.00",
             lotusPrice = "RM30.00",
             bigPrice = "RM34.00",
-            aeonPrice = "RM35.00"
+            aeonPrice = "RM35.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fish",
@@ -307,7 +365,9 @@ object ItemRepository {
             vgPrice = "RM33.00",
             lotusPrice = "RM30.00",
             bigPrice = "RM34.00",
-            aeonPrice = "RM35.00"
+            aeonPrice = "RM35.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fish",
@@ -320,7 +380,9 @@ object ItemRepository {
             vgPrice = "RM13.00",
             lotusPrice = "RM10.00",
             bigPrice = "RM14.00",
-            aeonPrice = "RM15.00"
+            aeonPrice = "RM15.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Fish",
@@ -333,7 +395,9 @@ object ItemRepository {
             vgPrice = "RM28.00",
             lotusPrice = "RM25.00",
             bigPrice = "RM29.00",
-            aeonPrice = "RM30.00"
+            aeonPrice = "RM30.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Seafood",
@@ -346,7 +410,9 @@ object ItemRepository {
             vgPrice = "RM28.00",
             lotusPrice = "RM20.00",
             bigPrice = "RM27.00",
-            aeonPrice = "RM30.00"
+            aeonPrice = "RM30.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Seafood",
@@ -359,7 +425,9 @@ object ItemRepository {
             vgPrice = "RM70.00",
             lotusPrice = "RM50.00",
             bigPrice = "RM65.00",
-            aeonPrice = "RM80.00"
+            aeonPrice = "RM80.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Seafood",
@@ -372,7 +440,9 @@ object ItemRepository {
             vgPrice = "RM18.00",
             lotusPrice = "RM15.00",
             bigPrice = "RM19.00",
-            aeonPrice = "RM20.00"
+            aeonPrice = "RM20.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Seafood",
@@ -385,7 +455,9 @@ object ItemRepository {
             vgPrice = "RM13.00",
             lotusPrice = "RM10.00",
             bigPrice = "RM14.00",
-            aeonPrice = "RM15.00"
+            aeonPrice = "RM15.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -398,7 +470,9 @@ object ItemRepository {
             vgPrice = "RM13.00",
             lotusPrice = "RM10.00",
             bigPrice = "RM14.00",
-            aeonPrice = "RM15.00"
+            aeonPrice = "RM15.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -411,7 +485,9 @@ object ItemRepository {
             vgPrice = "RM7.00",
             lotusPrice = "RM6.00",
             bigPrice = "RM7.50",
-            aeonPrice = "RM8.00"
+            aeonPrice = "RM8.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -424,7 +500,9 @@ object ItemRepository {
             vgPrice = "RM7.50",
             lotusPrice = "RM6.00",
             bigPrice = "RM7.80",
-            aeonPrice = "RM8.00"
+            aeonPrice = "RM8.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -437,7 +515,9 @@ object ItemRepository {
             vgPrice = "RM2.80",
             lotusPrice = "RM2.00",
             bigPrice = "RM2.70",
-            aeonPrice = "RM3.00"
+            aeonPrice = "RM3.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -450,7 +530,9 @@ object ItemRepository {
             vgPrice = "RM18.00",
             lotusPrice = "RM15.00",
             bigPrice = "RM19.00",
-            aeonPrice = "RM20.00"
+            aeonPrice = "RM20.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Eggs & Dairy",
@@ -463,7 +545,9 @@ object ItemRepository {
             vgPrice = "RM22.00",
             lotusPrice = "RM18.00",
             bigPrice = "RM23.00",
-            aeonPrice = "RM25.00"
+            aeonPrice = "RM25.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -476,7 +560,9 @@ object ItemRepository {
             vgPrice = "RM6.50",
             lotusPrice = "RM5.00",
             bigPrice = "RM6.80",
-            aeonPrice = "RM7.00"
+            aeonPrice = "RM7.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -489,7 +575,9 @@ object ItemRepository {
             vgPrice = "RM2.80",
             lotusPrice = "RM2.00",
             bigPrice = "RM2.70",
-            aeonPrice = "RM3.00"
+            aeonPrice = "RM3.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -502,7 +590,9 @@ object ItemRepository {
             vgPrice = "RM3.30",
             lotusPrice = "RM2.50",
             bigPrice = "RM3.20",
-            aeonPrice = "RM3.50"
+            aeonPrice = "RM3.50",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -515,7 +605,9 @@ object ItemRepository {
             vgPrice = "RM2.80",
             lotusPrice = "RM2.00",
             bigPrice = "RM2.70",
-            aeonPrice = "RM3.00"
+            aeonPrice = "RM3.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -528,7 +620,9 @@ object ItemRepository {
             vgPrice = "RM5.00",
             lotusPrice = "RM4.00",
             bigPrice = "RM5.50",
-            aeonPrice = "RM6.00"
+            aeonPrice = "RM6.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -541,7 +635,9 @@ object ItemRepository {
             vgPrice = "RM6.50",
             lotusPrice = "RM5.00",
             bigPrice = "RM6.80",
-            aeonPrice = "RM7.00"
+            aeonPrice = "RM7.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -554,7 +650,9 @@ object ItemRepository {
             vgPrice = "RM3.80",
             lotusPrice = "RM3.00",
             bigPrice = "RM3.70",
-            aeonPrice = "RM4.00"
+            aeonPrice = "RM4.00",
+            price = "RM6.00",
+            quantity = 1
         ),
         Item(
             category = "Snacks",
@@ -567,7 +665,9 @@ object ItemRepository {
             vgPrice = "RM2.80",
             lotusPrice = "RM2.00",
             bigPrice = "RM2.70",
-            aeonPrice = "RM3.00"
+            aeonPrice = "RM3.00",
+            price = "RM6.00",
+            quantity = 1
         )
     )
 

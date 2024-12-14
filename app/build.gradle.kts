@@ -36,6 +36,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
     buildToolsVersion = "35.0.0"
 }
 
@@ -44,6 +45,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.gridlayout)
