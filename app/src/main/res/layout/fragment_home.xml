@@ -275,21 +275,24 @@
             </LinearLayout>
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="50dp"
+                    >
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/itemCard"
+                        android:id="@+id/appleCard"
                         android:layout_width="150dp"
                         android:layout_height="190dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        android:contentDescription="Apples">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -393,12 +396,13 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/itemCard2"
+                        android:id="@+id/mangoCard"
                         android:layout_width="150dp"
                         android:layout_height="190dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        android:contentDescription="Mangoes">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -506,7 +510,8 @@
                         android:layout_height="190dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        android:contentDescription="Watermelon">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -613,7 +618,8 @@
                         android:layout_height="190dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        android:contentDescription="Strawberry">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -719,7 +725,8 @@
                         android:layout_height="190dp"
                         android:layout_margin="10dp"
                         app:cardCornerRadius="10dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="3dp"
+                        android:contentDescription="Bananas">
 
                         <LinearLayout
                             android:layout_width="match_parent"
