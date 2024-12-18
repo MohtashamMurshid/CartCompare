@@ -23,7 +23,7 @@ class AddFragment : Fragment() {
     private val itemDetailsFragment = ItemDetailsFragment()
     private var _binding: FragmentAddBinding? = null
     private val binding get() = _binding!!
-    
+
     override fun onCreateView( //binding process with fragment_add.xml
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +32,7 @@ class AddFragment : Fragment() {
         return binding.root
     }
 
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //now that the binding is done, Im setting up UI interactions and logic here
         super.onViewCreated(view, savedInstanceState) //mandatory
 
@@ -70,6 +70,17 @@ class AddFragment : Fragment() {
                 }
 
             }
+        }
+
+        //handling arguments,
+        arguments?.getString("category")?.let{
+            showItems(it) //'it' holds string value of either "Fruits"/ "Veggies"/ "Meat"/ etc
+
+            // Set all TextViews to the original color
+            textViewList.forEach { it.setTextColor(Color.parseColor("#34DC1E"))}
+
+            // Set blue text color for the selected category using 'it'
+            textViewList.find { textView-> it == textView.text }?.setTextColor(Color.parseColor("#007AFF"))
         }
 
         showItems("Fruits")
@@ -111,15 +122,14 @@ class AddFragment : Fragment() {
                     bundle.putString("item", item.name) // Pass item data so that ItemDetails know which item to show
                     itemDetailsFragment.arguments = bundle
 
-                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     // Perform the fragment transaction
+                    val transaction = requireActivity().supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.rootFl, itemDetailsFragment)
-                    transaction.addToBackStack(null)
+//                    transaction.addToBackStack(null)
                     transaction.commit()
                     Toast.makeText(requireContext(),"${item.name} details shown",Toast.LENGTH_SHORT).show()
-
-
                 }
+
                 // Add the card to the GridLayout
                 binding.gridLayout.addView(itemCardView)
             }

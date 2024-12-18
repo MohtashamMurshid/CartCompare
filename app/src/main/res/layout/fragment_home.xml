@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootFl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
@@ -10,7 +11,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     <HorizontalScrollView
         android:id="@+id/categoryBar"
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Fruit"
+                    android:id="@+id/fruitsBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -41,9 +41,10 @@
                     android:src="@drawable/fruit"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Fruits"
                     />
                 <TextView
-                    android:id="@+id/profile_email"
+                    android:id="@+id/fruit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
@@ -57,7 +58,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Vegetable"
+                    android:id="@+id/veggiesBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -65,6 +66,7 @@
                     android:src="@drawable/vegetable"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Veggies"
                     />
 
                 <TextView
@@ -81,7 +83,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Meat"
+                    android:id="@+id/meatBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -89,6 +91,7 @@
                     android:src="@drawable/meat"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Meat"
                     />
 
                 <TextView
@@ -105,7 +108,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Fish"
+                    android:id="@+id/fishBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -113,6 +116,7 @@
                     android:src="@drawable/fish"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Fish"
                     />
 
                 <TextView
@@ -129,7 +133,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/SeaFood"
+                    android:id="@+id/seafoodBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -137,6 +141,7 @@
                     android:src="@drawable/seafood"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Seafood"
                     />
 
                 <TextView
@@ -155,7 +160,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Eggmilk"
+                    android:id="@+id/eggmilkBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -163,6 +168,7 @@
                     android:src="@drawable/eggsmilk"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Eggs &amp; Dairy"
                     />
 
                 <TextView
@@ -179,7 +185,7 @@
                 android:orientation="vertical"
                 android:layout_margin="5dp">
                 <ImageButton
-                    android:id="@+id/Snacks"
+                    android:id="@+id/snacksBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -187,6 +193,7 @@
                     android:src="@drawable/snack"
                     android:background="@drawable/round"
                     android:clipToOutline="true"
+                    android:contentDescription="Snacks"
                     />
 
                 <TextView
@@ -265,7 +272,6 @@
                     android:textColor="@android:color/holo_blue_dark"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -816,11 +822,13 @@
 
                 </LinearLayout>
         </HorizontalScrollView>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="260dp"
+                android:src="@drawable/mydebit_jom_menang_lotus" />
             </FrameLayout>
-
-
-
-
-
     </FrameLayout>
 </FrameLayout>
