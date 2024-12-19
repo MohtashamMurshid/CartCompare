@@ -18,35 +18,28 @@ class MainActivity : AppCompatActivity(), Navigation {
     private val addFragment = AddFragment() //instance of AddFragment class.
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater) //auto binds code with xml file named "activity_main.xml", filename is permanent, if we change they wont recognize and code wont work
-        setContentView(binding.root) //only main activity has the setContentView method for binding.
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        // Load the default fragment on startup
+        if (savedInstanceState == null) { // Ensure this only happens on the first launch
+            showHomeFragment()
+        }
 
-        binding.bottonNavigationView.setOnItemSelectedListener{menuItem->
+        binding.bottonNavigationView.setOnItemSelectedListener { menuItem ->
             val itemId = menuItem.itemId
-
-            when(itemId){
-                R.id.item_home-> {
-                    showHomeFragment()
-                }
-                R.id.item_add ->{
-                    showAddFragment("Fruits") //when opening add fragment, show fruits category by default.
-                }
-                R.id.item_cart->{
-                    showCartFragment()
-                }
-                R.id.item_person ->{
-                    showProfileFragment()
-                }
+            when (itemId) {
+                R.id.item_home -> showHomeFragment()
+                R.id.item_add -> showAddFragment("Fruits")
+                R.id.item_cart -> showCartFragment()
+                R.id.item_person -> showProfileFragment()
             }
             true
         }
     }
+
 
     private fun showHomeFragment(){
         binding.toolbarTitleTv.text = "Home"
