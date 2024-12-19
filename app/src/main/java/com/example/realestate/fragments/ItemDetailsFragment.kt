@@ -98,8 +98,13 @@ class ItemDetailsFragment : Fragment() {
 
 
         //navigates back
-        binding.backIcon.setOnClickListener{
-            requireActivity().supportFragmentManager.popBackStack()
+        binding.backIcon.setOnClickListener {
+            val fragmentManager = requireActivity().supportFragmentManager
+            if (fragmentManager.backStackEntryCount > 0) {
+                fragmentManager.popBackStack() // Go back to AddFragment
+            } else {
+                Toast.makeText(requireContext(), "No previous page available", Toast.LENGTH_SHORT).show()
+            }
         }
 
         //setting up list pair of card & price, for sorting cards based on price order

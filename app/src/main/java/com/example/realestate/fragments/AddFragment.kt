@@ -37,6 +37,13 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Retrieve category passed from HomeFragment
+        val category = arguments?.getString("category") ?: "Fruits"
+        Log.d("AddFragment", "Received category: $category") // Log the category
+
+        // Load items for the category
+        showItems(category)
+
 
         val textViewList = listOf(
             binding.fruitsTv,
@@ -71,8 +78,6 @@ class AddFragment : Fragment() {
             }
         }
 
-        // Load the default category
-        showItems("Fruits")
     }
 
     //for cleaning up any references or resources that might cause memory leaks
@@ -83,6 +88,14 @@ class AddFragment : Fragment() {
 
     private fun showItems(category: String) {
         val items = ItemRepository.getItemByCategory(category)
+        if (items != null) {
+            for (item in items) {
+                Log.d("AddFragment", "Loading item: ${item.name}")
+                // Dynamically inflate and populate your item cards here...
+            }
+        } else {
+            Log.e("AddFragment", "No items found for category: $category")
+        }
 
         // Clear any existing views in the grid layout
         binding.gridLayout.removeAllViews()
@@ -120,8 +133,9 @@ class AddFragment : Fragment() {
                     itemDetailsFragment.arguments = bundle
                     parentFragmentManager.beginTransaction()
                         .replace(R.id.rootFl, itemDetailsFragment)
-                        .addToBackStack(null)
+                        .addToBackStack("AddFragment") // Add to back stack
                         .commit()
+                    Toast.makeText(requireContext(),"${item.name} details shown",Toast.LENGTH_SHORT).show()
                 }
 
                 // Add the card to the grid layout

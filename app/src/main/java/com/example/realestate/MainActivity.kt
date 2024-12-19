@@ -1,7 +1,7 @@
 package com.example.realestate
 
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.realestate.databinding.ActivityMainBinding
@@ -11,17 +11,11 @@ import com.example.realestate.fragments.HomeFragment
 import com.example.realestate.fragments.ItemDetailsFragment
 import com.example.realestate.fragments.ProfileFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Navigation {
 
     private lateinit var binding: ActivityMainBinding
     private val itemDetailsFragment = ItemDetailsFragment()
-    fun setToolbarVisibility(isVisible: Boolean) {
-        if (isVisible) {
-            binding.toolbarTitleTv.visibility = View.VISIBLE
-        } else {
-            binding.toolbarTitleTv.visibility = View.GONE
-        }
-    }
+    private val addFragment = AddFragment() //instance of AddFragment class.
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -38,23 +32,16 @@ class MainActivity : AppCompatActivity() {
 
             when(itemId){
                 R.id.item_home-> {
-
                     showHomeFragment()
                 }
                 R.id.item_add ->{
-                    showAddFragment()
-
-
+                    showAddFragment("Fruits") //when opening add fragment, show fruits category by default.
                 }
                 R.id.item_cart->{
                     showCartFragment()
-
-
                 }
                 R.id.item_person ->{
                     showProfileFragment()
-
-
                 }
             }
             true
@@ -68,13 +55,22 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.fragmentsFl.id, homeFragment, "Home")
         fragmentTransaction.commit()
     }
-    private fun showAddFragment(){
+
+    override fun showAddFragment(category: String) {
         binding.toolbarTitleTv.text = "Add"
-        val addFragment = AddFragment() //instance of AddFragment class.
-        val fragmentTransaction = supportFragmentManager.beginTransaction() //init fragment transaction
-        fragmentTransaction.replace(binding.fragmentsFl.id, addFragment, "Add") //replace frame layout element with addFragemnt
-        fragmentTransaction.commit()
+
+        val addFragment = AddFragment()
+        val bundle = Bundle().apply {
+            putString("category", category)
+        }
+        addFragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentsFl.id, addFragment, "Add")
+            .addToBackStack("AddFragment")
+            .commit()
     }
+
     private fun showCartFragment(){
         binding.toolbarTitleTv.text = "Cart"
         val cartFragment = CartFragment()
@@ -82,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.fragmentsFl.id, cartFragment, "Cart")
         fragmentTransaction.commit()
     }
+
     private fun showProfileFragment(){
         binding.toolbarTitleTv.text = "Profile"
         val profileFragment = ProfileFragment()
@@ -89,4 +86,6 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.fragmentsFl.id, profileFragment, "Profile")
         fragmentTransaction.commit()
     }
+
+
 }

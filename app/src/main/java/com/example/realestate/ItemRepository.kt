@@ -1,5 +1,6 @@
 package com.example.realestate
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 
 object ItemRepository {
@@ -7,10 +8,16 @@ object ItemRepository {
     val itemQuantities = MutableLiveData<Map<String, Int>>(_itemQuantities)
 
     fun getItemByName(name: String): Item? {
-        return items.find { it.name.equals(name, ignoreCase = true) }
+        val item = items.find { it.name.equals(name, ignoreCase = true) }
+        if (item == null) {
+            Log.e("ItemRepository", "Item not found: $name")
+        } else {
+            Log.d("ItemRepository", "Item found: ${item.name}")
+        }
+        return item
     }
 
-    fun getItemByCategory(category: String): List<Item>? {
+    fun getItemByCategory(category: String): List<Item> {
         return items.filter { it.category.equals(category, ignoreCase = true) }
     }
 
